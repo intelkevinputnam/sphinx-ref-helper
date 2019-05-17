@@ -22,6 +22,6 @@ Usage
 #.  Open a Sphinx project using “Open Folder." Make sure the conf.py
     is in the top level directory. It's OK if there isn't one, but
     the plugin tries to check if there are "exclude patterns."
-#.  Put cursor where you want to insert “``:ref:````”
+#.  Put cursor where you want to insert ``:ref:````
 #.  Type (ctrl + 1)
 #.  Select ref from the list to insert at current cursor location.
