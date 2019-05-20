@@ -32,6 +32,6 @@ Usage
     is in the top level directory. It's OK if there isn't one, but
     the plugin tries to check if there are "exclude patterns" to avoid.
 #.  Put cursor where you want to insert ``:ref:````.
-#.  Type (``primary + 1`` - "ctrl key" in Windows/Linux and "apple key"
+#.  Type (``primary + 1`` - "ctrl key" in Windows/Linux and "⌘ key"
     in MacOS).
 #.  Select ref from the list to insert at current cursor location.
