@@ -9,7 +9,7 @@ insert the correct ``:ref:```` in the document you are editing at the current
 cursor location. Note that this plugin stands alone and does not require
 Sphinx to be installed or the documenation to have been build
 
-.. image:: images/sphinx-ref-helper-screenshot.png
+.. image:: images/sphinx-ref-help-screenshot.png
 
 Recommended workflow is to have only a single Sphinx documentation project
 folder in any given window.
