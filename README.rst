@@ -10,7 +10,7 @@ It displays each one it finds (along wit the file it was found in) in the
 quick panel. If you select one (either by clicking or hitting enter) it will
 insert the correct ``:ref:```` in the document you are editing at the current
 cursor location. Note that this plugin stands alone and does not require
-Sphinx to be installed or the documenation to have been build
+Sphinx to be installed or the documenation to have been built.
 
 .. image:: images/sphinx-ref-help-screenshot.png
 
