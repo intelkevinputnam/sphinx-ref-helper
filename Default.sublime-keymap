@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["ctrl+1"],
+        "keys": ["primary+1"],
         "command": "sphinx_ref"
     }
 ]
