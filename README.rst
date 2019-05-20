@@ -1,6 +1,9 @@
 Sphinx Ref Helper
 #################
 
+.. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/Apache-2.0
+
 This plugin works with Sublime Text 3. It searches the first open folder
 in any given Sublime Text 3 window for Sphinx internal doc references labels.
 It displays each one it finds (along wit the file it was found in) in the
