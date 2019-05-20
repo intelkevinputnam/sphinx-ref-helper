@@ -1,13 +1,15 @@
 Sphinx Ref Helper
 #################
 
-This plugin works with Sublime Text 3. It searches the first folder in a
-window for Sphinx internal doc references labels. It displays
-each one it finds (along wit the file it was found in) in the quick panel.
-If you select one (either by clicking or hitting enter) it will insert
-the correct ``:ref:```` in the document you are editing at the current
+This plugin works with Sublime Text 3. It searches the first open folder
+in any given Sublime Text 3 window for Sphinx internal doc references labels.
+It displays each one it finds (along wit the file it was found in) in the
+quick panel. If you select one (either by clicking or hitting enter) it will
+insert the correct ``:ref:```` in the document you are editing at the current
 cursor location. Note that this plugin stands alone and does not require
 Sphinx to be installed or the documenation to have been build
+
+.. image:: images/sphinx-ref-helper-screenshot.png
 
 Recommended workflow is to have only a single Sphinx documentation project
 folder in any given window.
