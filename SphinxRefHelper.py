@@ -34,26 +34,28 @@ class SphinxRefCommand(sublime_plugin.WindowCommand):
         theView = self.window.active_view()
         theView.run_command("insert", {"characters": ":ref:`" + self.refList[index] + "`"})
 
-    def grep_r (self, pattern, dir, excludePatterns):
+    def grep_r (self, pattern, dir, extensions, excludePatterns):
 
         output = []
         for parent, dnames, fnames in os.walk(dir):
             fnames = [f for f in fnames if not f[0] == '.'] #ignore hidden files
+            fnames = [f for f in fnames if f.endswith(extensions)]
             dnames[:] = [d for d in dnames if not d[0] == '.'] #ignore hidden directories
             dnames[:] = [d for d in dnames if d not in excludePatterns]
+
 
             for fname in fnames:
                 filename = os.path.join(parent, fname)
                 if os.path.isfile(filename):
-                    try: 
-                        with open(filename) as f:
+                    try:
+                        with open(filename, encoding='utf-8', errors='ignore') as f: 
                             for line in f:
                                 if pattern in line:
                                     line = line.strip()
                                     line = filename + ":" + line
                                     output.append(line)
-                    except UnicodeDecodeError:
-                        next
+                    except UnicodeDecodeError as e: 
+                            next
 
         return output
 
@@ -84,9 +86,9 @@ class SphinxRefCommand(sublime_plugin.WindowCommand):
 
         # grep all of the references in the project and remove the ones that
         # are in excluded directories
-
+        extensions = ('.rst','.txt','.md')
         pattern = ".. _"
-        grepOutput = self.grep_r(pattern, ".", exclude_patterns)
+        grepOutput = self.grep_r(pattern, ".", extensions, exclude_patterns)
         #grepOutput = grepOutput.splitlines()
         htmlRefPattern = "://"
 
