@@ -2,17 +2,26 @@ import sublime
 import sublime_plugin
 import os
 
-fileName = "conf.py"
+configFile = "conf.py"
 
 class SphinxRefCommand(sublime_plugin.WindowCommand):
 
     refDict = {}
     refList = []
     displayList = []
+    configFiles = []
+
+    def findConfPY(self, dir):
+        numConfFiles = 0
+        self.configFiles = []
+        for parent, dnames, fnames in os.walk(dir):
+            for fname in fnames:
+                if configFile in fname:
+                    self.configFiles.append(os.path.join(parent, fname))
+                    numConfFiles += 1
 
     def run(self):
         folders = self.window.folders()
-        print(folders)
 
         self.refDict = {}
         self.refList = []
@@ -62,27 +71,27 @@ class SphinxRefCommand(sublime_plugin.WindowCommand):
     def getRefs(self, dir):
 
         os.chdir(dir)                
+        self.findConfPY(dir)
 
-        try: 
-            with open(fileName) as f:
-                lines = f.readlines()
-        except EnvironmentError: 
-            lines = []    
+        exclude_patterns = []
+        for file in self.configFiles:
 
-        for line in lines:
-            if "exclude_patterns" in line:
-                line = line.strip() 
-                line = line.replace(" ", "")
-                line = line.split('=') 
-                patterns = line[1].strip("[]")
-                patterns = patterns.replace("'","")
-                exclude_patterns = patterns.split(',')
-                # would prefer to use: exec(line) - doesn't appear to work inside of sublime text
+            try: 
+                with open(file) as f:
+                    lines = f.readlines()
+            except EnvironmentError: 
+                lines = []    
 
-        try:
-            exclude_patterns
-        except NameError:
-            exclude_patterns = []
+            for line in lines:
+                if "exclude_patterns" in line:
+                    line = line.strip() 
+                    line = line.replace(" ", "")
+                    line = line.split('=') 
+                    patterns = line[1].strip("[]")
+                    patterns = patterns.replace("'","")
+                    for item in patterns.split(','):
+                        exclude_patterns.append(item)
+                    # would prefer to use: exec(line) - doesn't appear to work inside of sublime text
 
         # grep all of the references in the project and remove the ones that
         # are in excluded directories
